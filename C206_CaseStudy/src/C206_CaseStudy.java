@@ -1,3 +1,4 @@
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class C206_CaseStudy {
@@ -59,6 +60,42 @@ public class C206_CaseStudy {
 
 				} else if (option == 2) {
 					// Yi Xian
+					ArrayList<TimetableRegistration> tregisList = new ArrayList<TimetableRegistration>();
+					
+					tregisList.add(new TimetableRegistration(1,24,"johnnytan@gmail.com"));
+					tregisList.add(new TimetableRegistration(2,10,"johnnytan@gmail.com"));
+					
+					int optionTr = 0;
+
+					while (optionTr != 4) {
+
+						C206_CaseStudy.menu3();
+						optionTr = Helper.readInt("Enter an option > ");
+
+						if (optionTr == 1) {
+							// View all items
+							C206_CaseStudy.viewAllTimetableRegistrations(tregisList);
+
+						} else if (optionTr == 2) {
+
+							// Add a new item
+							C206_CaseStudy.setHeader("ADD");
+							TimetableRegistration tr = inputTimetableRegistration(tregisList);
+							C206_CaseStudy.addTimetableRegistration(tregisList, tr);
+
+						} else if (optionTr == 3) {
+
+							// Loan item
+							C206_CaseStudy.setHeader("DELETE");
+							C206_CaseStudy.deleteTimetableRegistration(tregisList);
+
+						} else if (optionTr == 4) {
+							System.out.println("Bye!");
+						} else {
+							System.out.println("Invalid option");
+						}
+
+					}
 					
 
 				} else if (option == 3) {
@@ -105,7 +142,10 @@ public class C206_CaseStudy {
 			}
 
 		}
-		// Yong Xing
+		
+		//Menus from all members
+		
+		// Yong Xing - Main
 		public static void menu() {
 			C206_CaseStudy.setHeader("TUITION CENTRE APP");
 			System.out.println("1. Yong Xing");
@@ -115,7 +155,7 @@ public class C206_CaseStudy {
 			Helper.line(80, "-");
 
 		}
-		// Yong Xing
+		// Yong Xing - Tuition
 		public static void menu1() {
 			C206_CaseStudy.setHeader("TUITION CENTRE APP");
 			System.out.println("1. Display Tuition");
@@ -124,7 +164,7 @@ public class C206_CaseStudy {
 			System.out.println("4. Quit");
 			Helper.line(80, "-");
 		}
-		//Joey
+		//Joey - Enquiry
 		private static void Menu2() { 
 //			enquiry.setHeader("ENQUIRY DEPARTMENT");
 			System.out.println("1. ADD ENQUIRY");
@@ -133,13 +173,26 @@ public class C206_CaseStudy {
 			System.out.println("4. Quit");
 			Helper.line(80, "-");
 		}
+		// Yi Xian - Timetable Registration
+		public static void menu3() {
+			C206_CaseStudy.setHeader("TIMETABLE REGISTRATION");
+			System.out.println("1. View Registration");
+			System.out.println("2. Add Timetable Registration");
+			System.out.println("3. Delete Timetable Registration");
+			System.out.println("4. Quit");
+			Helper.line(80, "-");
+		}
 		
-		// Yong Xing
+		// Yong Xing - Header
 		public static void setHeader(String header) {
 			Helper.line(80, "-");
 			System.out.println(header);
 			Helper.line(80, "-");
 		}
+		
+		
+		
+		
 		// Yong Xing
 		public static String retrieveAllTuition(ArrayList<Tuition> TuitionList) {
 			String output = "";
@@ -192,6 +245,10 @@ public class C206_CaseStudy {
 			}
 
 		}
+		
+		
+		
+		
 		// delete-Joey
 		public static void deleteEnquiry(ArrayList<enquiry> enquiryList) {
 			String enquiryId = Helper.readString("Enter enquiry id > ");
@@ -257,6 +314,61 @@ public class C206_CaseStudy {
 					"DATE/TIME", "URGENCY");
 			output += retrieveAllEnquiry(enquiryList);
 			System.out.println(output);
+		}
+		
+		
+		
+		
+		// Yi Xian - Tuition Timetable Registration
+		
+		// Yi Xian - Option 1 - View Timetable Registration
+		
+		public static String retrieveAllTimetableRegistrations(ArrayList<TimetableRegistration> tregisList) {
+			String output = "";
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+			for (TimetableRegistration tr : tregisList) {
+				String formatDateTime = tr.getDateTime().format(formatter);
+				output += String.format("%-20d %-15d %-35s %-35s %-10s\n",tr.getRegistrationNo(),tr.getTimetableId(),
+						tr.getStudentEmail(),formatDateTime,tr.getStatus());
+			}
+			return output;
+		}
+		
+		public static void viewAllTimetableRegistrations(ArrayList<TimetableRegistration> tregisList) {
+			C206_CaseStudy.setHeader("TIMETABLE REGISTRATIONS");
+			String output = String.format("%-20s %-15s %-35s %-35s %-10s\n", "REGISTRATION NO.", "TIMETABLE ID",
+					"STUDENT EMAIL", "REGISTRATION DATE/TIME","STATUS");
+			output += retrieveAllTimetableRegistrations(tregisList);
+			System.out.println(output);
+		}
+		
+		// Yi Xian - Option 2 - Add Timetable Registration
+		
+		public static TimetableRegistration inputTimetableRegistration(ArrayList<TimetableRegistration> tregisList) {
+			int rNo = tregisList.get(tregisList.size() - 1).getRegistrationNo() + 1;
+			int ttId = Helper.readInt("Enter Timetable ID > ");
+			String sEmail = Helper.readString("Enter Student Email > ");
+					
+			TimetableRegistration tr= new TimetableRegistration(rNo, ttId, sEmail);
+			return tr;
+			
+		}
+		public static void addTimetableRegistration(ArrayList<TimetableRegistration> tregisList, TimetableRegistration tr) {
+			tregisList.add(tr);
+			System.out.println("Tution Registration: No. " + tr.getRegistrationNo() + " has been added!");
+		}
+		
+		// Yi Xian - Option 3 - Delete Timetable Registration
+		
+		public static void deleteTimetableRegistration(ArrayList<TimetableRegistration> tregisList) {
+			int rNo = Helper.readInt("Enter Registration No. to delete > ");
+			for (TimetableRegistration tr : tregisList) {
+				if (tr.getRegistrationNo() == rNo) {
+					tregisList.remove(tr);
+					break;
+				}
+			}
+			System.out.println("Tution Registration: No. " + rNo + " has been deleted!");
 		}
 
 }
