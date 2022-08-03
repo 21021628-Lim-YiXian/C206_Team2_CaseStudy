@@ -1,4 +1,4 @@
-//Joey Fook
+//Joey
 public class enquiry{
 	private String EnquiryId;
 	private String Title;
@@ -53,9 +53,6 @@ public class enquiry{
 			Urgency = "No";
 		}
 		return Urgency;
-	}
-	public static void setHeader(String string) {
-		
 	}
 }
 
