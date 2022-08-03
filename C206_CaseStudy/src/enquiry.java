@@ -54,8 +54,5 @@ public class enquiry{
 		}
 		return Urgency;
 	}
-	public static void setHeader(String string) {
-		
-	}
 }
 
