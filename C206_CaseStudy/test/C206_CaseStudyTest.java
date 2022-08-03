@@ -37,7 +37,7 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that Enquiry arraylist size is 2", 2, enquiryList.size());
 		assertSame("Check that Enquiry is added", ei2, enquiryList.get(1));
 	}
-	@Test //Joeyy
+	@Test //Joey
 	public void testRetrieveAllEnquiry() {
 		assertNotNull("Test if there is valid Enquiry arraylist to retrieve item", enquiryList);
 		String allEnquiry= C206_CaseStudy.retrieveAllEnquiry(enquiryList);

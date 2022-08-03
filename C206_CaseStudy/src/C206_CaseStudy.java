@@ -23,7 +23,7 @@ public class C206_CaseStudy {
 	}
 
 	// Joey
-	private static void Enquiry() {
+	public static void Enquiry() {
 		ArrayList<enquiry> enquiryList = new ArrayList<enquiry>();
 
 		enquiryList.add(new enquiry("EI001", "Join", "Call-In : 31/07/2022 9:00AM : progressing", "31/07/2022", true));
@@ -82,7 +82,7 @@ public class C206_CaseStudy {
 		return isDeleted;
 	}
 	// add n input -Joey
-	private static enquiry inputEnquiry() {
+	public static enquiry inputEnquiry() {
 		String EnquiryId = Helper.readString("Enter EnquiryId >");
 		String Title = Helper.readString("Enter Title >");
 		String FollowupResponses = Helper.readString("FollowupResponses >");
@@ -127,7 +127,7 @@ public class C206_CaseStudy {
 		Helper.line(80, "-");
 	}
 
-	private static void SubMenu() { // Joey
+	public static void SubMenu() { // Joey
 //				enquiry.setHeader("ENQUIRY DEPARTMENT");
 		System.out.println("1. ADD ENQUIRY");
 		System.out.println("2. VIEW ENQUIRY");
