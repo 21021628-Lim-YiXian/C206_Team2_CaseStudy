@@ -141,7 +141,7 @@ public class C206_CaseStudy {
 			TuitionList.add(tt);
 
 		}
-		// Yong Xing
+		// Yong Xing/
 		public static void deleteTuition(ArrayList<Tuition> TuitionList) {
 			int code = Helper.readInt("Enter tuition code to remove> ");
 			for (int i = 0; i < TuitionList.size(); i++) {
