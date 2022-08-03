@@ -1,17 +1,12 @@
-// Version for AY2013/14 Sem 2.
-
 import java.util.*;
 
 public class Helper {
-  
-  static Scanner scan = new java.util.Scanner(System.in);
-  
+
+  @SuppressWarnings("resource")
   public static String readString(String prompt) {
     System.out.print(prompt);
-    return scan.nextLine();
+    return new java.util.Scanner(System.in).nextLine();
   }
-  
-  //joey
 
   public static int readInt(String prompt) {
     int input = 0;
@@ -126,6 +121,7 @@ public class Helper {
     }
     return date;
   }
+  
 
   private static String quit = "0";
 

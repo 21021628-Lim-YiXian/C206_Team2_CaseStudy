@@ -1,4 +1,4 @@
-//Joey Fook 
+//Joey Fookk
 public class enquiry{
 	private String EnquiryId;
 	private String Title;
