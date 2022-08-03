@@ -69,7 +69,7 @@ public class C206_CaseStudyTest {
 		assertSame("Test that Tuition is added same as 3rd item of the list?", tt3, TuitionList.get(2));
 	}
 	
-	@Test
+	/*@Test
 	public void testDeleteTuition() {
 		// Item list is not null, so that can add a new item
 		assertNotNull("Test if there is valid Tuition arraylist to delete from", TuitionList);
@@ -84,7 +84,7 @@ public class C206_CaseStudyTest {
 		//Delete another item. test The size of the list is 0?
 		C206_CaseStudy.deleteTuition(TuitionList);
 		assertEquals("Test that Tuition arraylist size is 0?", 0, TuitionList.size());
-	}
+	} */
 	
 	@After
 	public void tearDown() throws Exception {
