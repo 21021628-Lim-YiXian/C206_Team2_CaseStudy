@@ -45,7 +45,6 @@ public class C206_CaseStudy {
 				System.out.println("added");
 
 			} else if (option2 == 2) {
-				viewEnquiry();
 				C206_CaseStudy.viewAllEnquiry(enquiryList);
 
 			} else if (option2 == 3) {
@@ -82,11 +81,6 @@ public class C206_CaseStudy {
 		}
 		return isDeleted;
 	}
-
-	private static void viewEnquiry() {
-
-	}
-
 	// add n input -Joey
 	private static enquiry inputEnquiry() {
 		String EnquiryId = Helper.readString("Enter EnquiryId >");

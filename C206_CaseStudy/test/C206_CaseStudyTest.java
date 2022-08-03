@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class C206_CaseStudyTest {
-	//Joey Fok
+	//Joey Fook
 	private enquiry ei1;
 	private enquiry ei2;
 	private enquiry ei3;
