@@ -119,7 +119,7 @@ public class C206_CaseStudy {
 		System.out.println(output);
 	}
 
-	private static void MainMenu() {
+	public static void MainMenu() {
 		System.out.println("1. ADD TUITION");
 		System.out.println("2. ADD ENQUIRY");
 		System.out.println("3. TIMETABLE REGISTRATION");
