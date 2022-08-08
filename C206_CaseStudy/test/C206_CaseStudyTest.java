@@ -62,7 +62,7 @@ public class C206_CaseStudyTest {
 
 		ttb1 = new Timetables(2345, 150.00, "jerry@gmail.com", "Start: 09/07/2022 4:00PM", "End: 09/07/2022 7:00PM", 4);
 		ttb2 = new Timetables(6789, 200.00, "mary@gmail.com", "Start: 04/09/2022 2:00PM", "End: 04/09/2022 6:00PM", 2);
-		
+		ttList = new ArrayList<Timetables>();
 		
 	}
 	
@@ -269,6 +269,7 @@ public class C206_CaseStudyTest {
 		
 		C206_CaseStudy.deleteTimetable(ttList);
 		assertEquals("Check that Timetable arraylist size is 1", 1, ttList.size());
+	}
 		
 	
 	@Test // Kyra
@@ -298,6 +299,8 @@ public class C206_CaseStudyTest {
 	
 	
 	}
+	
+
 	
 	@Test // Kyra
 // public void testdeleteTimetable() {
