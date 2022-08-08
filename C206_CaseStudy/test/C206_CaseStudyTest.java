@@ -271,14 +271,51 @@ public class C206_CaseStudyTest {
 		assertEquals("Check that Timetable arraylist size is 1", 1, ttList.size());
 		
 	
-	
-	
-	
+	@Test // Kyra
 		
+	public void testaddTimetable() {
+			
+		// Item list is not null, so that can add a new item - boundary
+		
+			
+		assertNotNull("Check if there is valid Timetables arraylist to add to", ttList);
+		
+		//Given an empty list, after adding 1 item, the size of the list is 1 - normal
+		//The item just added is as same as the first item of the list
+		
+		C206_CaseStudy.addTimetables(ttList, ttb1);
+		
+		assertEquals("Check that Timetable arraylist size is 1", 1, ttList.size());
+		assertSame("Check that TimetableRegistration is added", ttb1, ttList.get(0));
+			
+		//Add another item. test The size of the list is 2? -normal
+		//The item just added is as same as the second item of the list
+			
+	    C206_CaseStudy.addTimetables(ttList, ttb2);
+	    assertEquals("Check that TimetableRegistration arraylist size is 2", 2, ttList.size());
+		assertSame("Check that TimetableRegistration is added", ttb2, ttList.get(1));
+	
+	
 	
 	}
+	
+	@Test // Kyra
+// public void testdeleteTimetable() {
+//		// Item list is not null, so that can add a new item - boundary
+//		assertNotNull("Check if there is valid TimetableRegistration arraylist to delete from", tregisList);
+//		C206_CaseStudy.addTimetableRegistration(ttList, ttb1);
+//		C206_CaseStudy.addTimetableRegistration(ttList, ttb2);
+//		
+//		//Delete another item. test The size of the list is 1? -normal
+//		C206_CaseStudy.deleteTimetableRegistration(ttList);
+//		assertEquals("Check that TimetableRegistration arraylist size is 1", 1, ttList.size());
+//
+//		//Delete another item. test The size of the list is 0? -normal
+//		C206_CaseStudy.deleteTimetableRegistration(ttList); 
+//		assertEquals("Check that TimetableRegistration arraylist size is 0", 0, ttList.size());
+//	}
 
-	public 
+	
 	
 	@After
 	public void tearDown() throws Exception {
