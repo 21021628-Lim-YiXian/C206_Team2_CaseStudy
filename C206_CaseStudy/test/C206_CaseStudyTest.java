@@ -27,6 +27,14 @@ public class C206_CaseStudyTest {
 	private TimetableRegistration tr2;
 	
 	private ArrayList<TimetableRegistration> tregisList;
+	
+	//Kyra - Tuition Timetable Update 
+	
+	private ArrayList<Timetables> ttList;
+	private Timetables ttb1 ;
+	private Timetables ttb2 ;
+	 
+	
 
 	@Before
 	public void setUp() throws Exception {
@@ -48,6 +56,14 @@ public class C206_CaseStudyTest {
 		tr2 = new TimetableRegistration(2,10,"johnnytan@gmail.com");
 		
 		tregisList= new ArrayList<TimetableRegistration>();
+		
+		//Kyra 
+		
+
+		ttb1 = new Timetables(2345, 150.00, "jerry@gmail.com", "Start: 09/07/2022 4:00PM", "End: 09/07/2022 7:00PM", 4);
+		ttb2 = new Timetables(6789, 200.00, "mary@gmail.com", "Start: 04/09/2022 2:00PM", "End: 04/09/2022 6:00PM", 2);
+		
+		
 	}
 	
 
@@ -223,7 +239,83 @@ public class C206_CaseStudyTest {
 //		C206_CaseStudy.deleteTimetableRegistration(tregisList); 
 //		assertEquals("Check that TimetableRegistration arraylist size is 0", 0, tregisList.size());
 //	}
+	
+	
+	@Test // Kyra 
+	
+	public void testretrieveAllTimetables() { 
+		
+		// Item list is not null, so that can add a new item - boundary
+		
+		assertNotNull("Test if there is valid Timetables arraylist to retrieve tuition from," , ttList);
+		
+		//Given an empty list, after adding 1 item, the size of the list is 1 - normal
+		//The item just added is as same as the first item of the list
+		
+		C206_CaseStudy.addTimetables(ttList, ttb1);
+		assertEquals("Check that Timetables arralist size is 1" , 1 , ttList.size());
+		assertSame("Check that Timetable is added", ttb1, ttList.get(0));
+		
+		//Add another item. test The size of the list is 2? -normal
+		//The item just added is as same as the second item of the list
+		
+		
+		C206_CaseStudy.addTimetables(ttList, ttb2);
+		assertEquals("Check that Timetable arraylist size is 2", 2, ttList.size());
+		assertSame("Check that TimetableRegistration is added", ttb2, ttList.get(1));
+		
+		
+		//Delete another item. test The size of the list is 1? -normal				
+		
+		C206_CaseStudy.deleteTimetable(ttList);
+		assertEquals("Check that Timetable arraylist size is 1", 1, ttList.size());
+		
+	
+	@Test // Kyra
+		
+	public void testaddTimetable() {
+			
+		// Item list is not null, so that can add a new item - boundary
+		
+			
+		assertNotNull("Check if there is valid Timetables arraylist to add to", ttList);
+		
+		//Given an empty list, after adding 1 item, the size of the list is 1 - normal
+		//The item just added is as same as the first item of the list
+		
+		C206_CaseStudy.addTimetables(ttList, ttb1);
+		
+		assertEquals("Check that Timetable arraylist size is 1", 1, ttList.size());
+		assertSame("Check that TimetableRegistration is added", ttb1, ttList.get(0));
+			
+		//Add another item. test The size of the list is 2? -normal
+		//The item just added is as same as the second item of the list
+			
+	    C206_CaseStudy.addTimetables(ttList, ttb2);
+	    assertEquals("Check that TimetableRegistration arraylist size is 2", 2, ttList.size());
+		assertSame("Check that TimetableRegistration is added", ttb2, ttList.get(1));
+	
+	
+	
+	}
+	
+	@Test // Kyra
+// public void testdeleteTimetable() {
+//		// Item list is not null, so that can add a new item - boundary
+//		assertNotNull("Check if there is valid TimetableRegistration arraylist to delete from", tregisList);
+//		C206_CaseStudy.addTimetableRegistration(ttList, ttb1);
+//		C206_CaseStudy.addTimetableRegistration(ttList, ttb2);
+//		
+//		//Delete another item. test The size of the list is 1? -normal
+//		C206_CaseStudy.deleteTimetableRegistration(ttList);
+//		assertEquals("Check that TimetableRegistration arraylist size is 1", 1, ttList.size());
+//
+//		//Delete another item. test The size of the list is 0? -normal
+//		C206_CaseStudy.deleteTimetableRegistration(ttList); 
+//		assertEquals("Check that TimetableRegistration arraylist size is 0", 0, ttList.size());
+//	}
 
+	
 	
 	@After
 	public void tearDown() throws Exception {
@@ -243,6 +335,14 @@ public class C206_CaseStudyTest {
 		tr1 = null;
 		tr2 = null;
 		tregisList = null;
+		
+		// Kyra 
+		
+		ttb1 = null; 
+		ttb2 = null;
+		
+		ttList = null;
+			
 	}
 
 }

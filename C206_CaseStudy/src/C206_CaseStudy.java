@@ -6,7 +6,7 @@ public class C206_CaseStudy {
 		public static void main(String[] args) {
 			int option = 0;
 
-			while (option != 4) {
+			while (option != 5) {
 				
 				C206_CaseStudy.menu();
 				option = Helper.readInt("Enter an option > ");
@@ -135,6 +135,64 @@ public class C206_CaseStudy {
 					}					
 
 				} else if (option == 4) {
+					
+					// Kyra 
+					
+					ArrayList<Timetables> ttList = new ArrayList<Timetables>();
+					
+				
+					ttList.add(new Timetables(2345, 150.00, "jerry@gmail.com", "Start: 09/07/2022 4:00PM", "End: 09/07/2022 7:00PM", 4));
+					ttList.add(new Timetables(6789, 200.00, "mary@gmail.com", "Start: 04/09/2022 2:00PM", "End: 04/09/2022 6:00PM", 2));
+					
+					
+					int optiontt = 0;
+					
+					while(optiontt != 4) {
+						
+						C206_CaseStudy.menu4();
+						optiontt = Helper.readInt("Enter an option >");
+						
+						 if(optiontt == 1) {
+							 
+							 // VIEW ALL TIMETABLES
+							 
+							 C206_CaseStudy.viewAllTimetables(ttList);
+							 
+						 } else if ( optiontt == 2) { 
+							 
+							 // ADD TIMETABLES
+							 
+							 int ttc = Helper.readInt("Enter tuition code > ");
+							 
+							 for ( int i = 0; i < ttList.size(); i++) { 
+								 
+								 if (ttList.get(i).getTimetableId() == ttc) { 
+									 System.out.println("Tuition ID already exists.");
+								 } else { 
+									 
+									Timetables ttb = inputTimetables(ttList);
+									C206_CaseStudy.addTimetables(ttList, ttb);
+									System.out.println("Tuition Timetable added.");
+									
+								 }
+							 }
+							 
+						 } else if ( option == 3) { 
+							 
+							 // DELETE TIMETABLES 
+							 
+							 C206_CaseStudy.deleteTimetable(ttList);
+							 
+						 } else if ( option == 4) { 
+							 System.out.println("Quit.");
+							 
+						 } else { 
+							 System.out.println("Invalid Option.");
+						 }
+					}
+					
+					
+					
 					System.out.println("Bye!");
 				} else {
 					System.out.println("Invalid option");
@@ -152,7 +210,8 @@ public class C206_CaseStudy {
 			System.out.println("1. Yong Xing");
 			System.out.println("2. Yi Xian");
 			System.out.println("3. Joey");
-			System.out.println("4. Quit");
+			System.out.println("4. Kyra");
+			System.out.println("5. Quit");
 			Helper.line(80, "-");
 
 		}
@@ -182,6 +241,22 @@ public class C206_CaseStudy {
 			System.out.println("3. Delete Timetable Registration");
 			System.out.println("4. Quit");
 			Helper.line(80, "-");
+			
+		}
+		
+		// Kyra - Timetable Update 
+		public static void menu4() { 
+			
+			C206_CaseStudy.setHeader("TIMETABLE UPDATE");
+			System.out.println("1. VIEW TUITION TIMETABLES");
+			System.out.println("2. ADD TUITION TIMETABLES");
+			System.out.println("3. DELETE TUITION TIMETABLES");
+			System.out.println("4. Quit");
+			Helper.line(80, "-");
+			
+			
+			
+			
 		}
 		
 		// Yong Xing - Header
@@ -370,6 +445,69 @@ public class C206_CaseStudy {
 				}
 			}
 			System.out.println("Tution Registration: No. " + rNo + " has been deleted!");
+		}
+		
+		// Kyra - Timetable Updates (ADMIN) 
+		
+		// Kyra -  Option 1 - View Timetables 
+		
+		public static String retrieveAllTimetables(ArrayList<Timetables>ttList) { 
+			String output = "";
+			
+			for (Timetables tt : ttList) {
+	
+				output += String.format("%-20d %-15d %-35s %-35s %-10s\n",tt.getTimetableId(), tt.getPrice(), 
+						tt.getStudentEmail(),tt.getStartTime(), tt.getEndTime(),tt.getTTmode());
+			}
+				return output;
+			}
+		
+		public static void viewAllTimetables(ArrayList<Timetables> ttList) { 
+			
+			 String output = String.format("%-15s %-10s %-15s %-15s %-15s %-15s %-15s %-15s \n",
+					 "TIMETABLE ID" , "PRICE" , "EMAIL" , "START DATE/TIME" , "END DATE/TIME" , "MODE");
+			 
+			 output += retrieveAllTimetables(ttList);
+			 System.out.println(output);
+		}
+		
+		// Kyra - Option 2 - Add Timetable 
+		
+		public static Timetables inputTimetables(ArrayList<Timetables> ttList) {
+			
+			int timetableId = Helper.readInt("Enter Tuition Timetable ID > ");
+			double price = Helper.readDouble("Enter Price >");
+			String studentEmail = Helper.readString("Enter student's email > ");
+			String startTime = Helper.readString("Enter Start Date/Time >");
+			String endTime = Helper.readString("Enter End Date/Time >");
+			int ttmode = Helper.readInt("Enter mode >");
+			
+			Timetables ttb = new Timetables (timetableId, price, studentEmail, startTime, endTime, ttmode);
+			return ttb;
+		}
+		
+		public static void addTimetables(ArrayList<Timetables> ttList, Timetables tt) {
+			ttList.add(tt);
+			System.out.println("Tution Timetable ID: " + tt.getTimetableId() + " has been added!");
+		}
+		
+		
+		// Kyra - Option 3 - Delete Timetable 
+		
+		public static void deleteTimetable(ArrayList<Timetables> ttList) { 
+			
+			int ttc = Helper.readInt("Enter Tuition ID > ");
+			
+			for ( int i = 0; i < ttList.size(); i++) { 
+				if ( ttList.get(i).getTimetableId() == ttc) { 
+					ttList.remove(i);
+					
+					System.out.println("Tuition Timetable ID" + ttc + "Has been Deleted.");
+				} else { 
+					System.out.println("Tuition timetable ID  does not exist.");
+				}
+			}
+			
 		}
 
 }
